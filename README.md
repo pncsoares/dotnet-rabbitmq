@@ -1,7 +1,5 @@
 # RabbitMQ in Dotnet Core
 
-> 🚧 Work in progress...
-
 This is a Demo project using RabbitMQ in Dotnet Core console application, for learning purposes 🎓
 
 In this Demo we will use a queue for message communication between a producer application and a consumer application.
@@ -55,6 +53,8 @@ AMQP 0-9-1 is a binary messaging protocol specification. This is the core protoc
 - **AMQP 1.0** - it is a newer version than the AMQP 0-9-1 but it is completely different, much more complex and, according to the documentation, it is not supported by most of the clients
 - **HTTP and WebSocket**
 
+# Setup
+
 ## How to install RabbitMQ
 
 We will use [Docker](https://docs.docker.com/) to install an image of RabbitMQ.
@@ -92,3 +92,58 @@ docker logs -f {container ID}
 # you can also input just the 3 first characters of the container ID and docker will figure it out for you 👇
 # example: docker logs -f c7f
 ```
+
+> If you restart your computer or just want to run the container again without installing the image, you just need to do the following:
+>
+> ```bash
+> docker ps -a
+>
+> # docker ps = List containers
+> # -a = Show all containers (default shows just running)
+> ```
+>
+> Identify the container that we created in the second step and copy the container ID
+>
+> ```bash
+> docker start -ai {container ID}
+>
+> # docker start = Start one or more stopped containers
+> # -a = Attach STDOUT/STDERR and forward signals
+> # -i = Attach container's STDIN
+>
+> # example: docker start -ai c7f
+> ```
+>
+> Now, the container is up and running
+
+Open a browser with the following URL: http://localhost:15672
+
+You will see something like this:
+
+![RabbitMQ Login page](./.github/images/rabbitmq-login-page.png)
+
+> The default username and password are: `guest`
+
+You can now run the Consumer console application and then run the Producer console application and see the message displayed in the Consumer's console.
+
+To do that, you can use your IDE buttons/options or via terminal, executing the following command:
+
+> before executing the command, `cd` to this repository root directory
+
+```bash
+# consumer
+dotnet run --project .\Consumer\Consumer.csproj
+
+# producer
+dotnet run --project .\Producer\Producer.csproj
+```
+
+Example of a message:
+
+```
+{"Name":"Producer","Message":"Hello World!"}
+```
+
+Take a look at RabbitMQ interface (http://localhost:15672) to see the message being produced to the queue and then consumed:
+
+![Message produced and consumed](./.github/images/produced-message-consumed-message.png)

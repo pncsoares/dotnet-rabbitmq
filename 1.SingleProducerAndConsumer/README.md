@@ -162,10 +162,10 @@ To do that, you can use your IDE buttons/options or via terminal, executing the 
 
 ```bash
 # consumer
-dotnet run .\1.SingleProducerAndConsumer\Producer\Producer.csproj
+dotnet run --project .\1.SingleProducerAndConsumer\Producer\Producer.csproj
 
 # producer
-dotnet run .\1.SingleProducerAndConsumer\Consumer\Consumer.csproj
+dotnet run --project .\1.SingleProducerAndConsumer\Consumer\Consumer.csproj
 ```
 
 Example of a message:

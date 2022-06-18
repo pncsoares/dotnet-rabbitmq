@@ -4,14 +4,13 @@ using RabbitMQ.Client;
 
 var factory = new ConnectionFactory
 {
-    // We are using AMQP pattern: amqp://{username}:{guest}@{hostname}:{port}
-    Uri = new Uri("amqp://guest:guest@localhost:5672")
+    Uri = new Uri(Shared.Constants.Uri)
 };
 
 using var connection = factory.CreateConnection();
 
 using var channel = connection.CreateModel();
-channel.QueueDeclare("demo-queue", true, false, false, null);
+channel.QueueDeclare(Shared.Constants.QueueName, true, false, false, null);
 
 var message = new
 {
@@ -21,4 +20,4 @@ var message = new
 
 var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
-channel.BasicPublish(string.Empty, "demo-queue", null, body);
+channel.BasicPublish(string.Empty, Shared.Constants.QueueName, null, body);

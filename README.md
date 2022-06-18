@@ -124,26 +124,16 @@ You will see something like this:
 
 > The default username and password are: `guest`
 
-You can now run the Consumer console application and then run the Producer console application and see the message displayed in the Consumer's console.
+Check out the code examples and the messages being processed 👇
 
-To do that, you can use your IDE buttons/options or via terminal, executing the following command:
+# Code examples
 
-> before executing the command, `cd` to this repository root directory
+- [📄 Single producer and consumer](./1.SingleProducerAndConsumer/README.md)
 
-```bash
-# consumer
-dotnet run --project .\Consumer\Consumer.csproj
+## TODO checklist
 
-# producer
-dotnet run --project .\Producer\Producer.csproj
-```
-
-Example of a message:
-
-```
-{"Name":"Producer","Message":"Hello World!"}
-```
-
-Take a look at RabbitMQ interface (http://localhost:15672) to see the message being produced to the queue and then consumed:
-
-![Message produced and consumed](./.github/images/produced-message-consumed-message.png)
+- [ ] Single producer with multiple consumers
+- [ ] Direct exchange
+- [ ] Topic exchange
+- [ ] Headers exchange
+- [ ] FanOut exchange 

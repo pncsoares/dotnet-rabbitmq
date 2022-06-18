@@ -174,10 +174,10 @@ To do that, you can use your IDE buttons/options or via terminal, executing the 
 
 ```bash
 # consumer
-dotnet run .\2.SingleProducerMultipleConsumers\Producer\Producer.csproj
+dotnet run --project .\2.SingleProducerMultipleConsumers\Producer\Producer.csproj
 
 # producer
-dotnet run .\2.SingleProducerMultipleConsumers\Consumer\Consumer.csproj
+dotnet run --project .\2.SingleProducerMultipleConsumers\Consumer\Consumer.csproj
 ```
 
 > Open multiple tabs of the consumer and run the project so you can see the messages being delivered to all of the consumers

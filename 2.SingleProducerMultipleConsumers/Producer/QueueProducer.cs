@@ -8,7 +8,7 @@ public static class QueueProducer
 {
     public static void Publish(IModel channel)
     {
-        channel.QueueDeclare("demo-queue", true, false, false, null);
+        channel.QueueDeclare(Shared.Constants.QueueName, true, false, false, null);
 
         var count = 0;
 
@@ -22,7 +22,7 @@ public static class QueueProducer
 
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
-            channel.BasicPublish(string.Empty, "demo-queue", null, body);
+            channel.BasicPublish(string.Empty, Shared.Constants.QueueName, null, body);
 
             count++;
             

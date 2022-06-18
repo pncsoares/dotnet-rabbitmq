@@ -8,7 +8,7 @@ public static class QueueConsumer
 {
     public static void Consume(IModel channel)
     {
-        channel.QueueDeclare("demo-queue", true, false, false, null);
+        channel.QueueDeclare(Shared.Constants.QueueName, true, false, false, null);
 
         var consumer = new EventingBasicConsumer(channel);
         consumer.Received += (sender, e) =>
@@ -19,9 +19,9 @@ public static class QueueConsumer
             Console.WriteLine(message);
         };
 
-        channel.BasicConsume("demo-queue", true, consumer);
+        channel.BasicConsume(Shared.Constants.QueueName, true, consumer);
 
-        Console.WriteLine("Consumer stared");
+        Console.WriteLine("Consumer started");
 
         Console.ReadKey();
     }

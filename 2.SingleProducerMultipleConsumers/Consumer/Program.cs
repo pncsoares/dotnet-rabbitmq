@@ -3,8 +3,7 @@ using RabbitMQ.Client;
 
 var factory = new ConnectionFactory
 {
-    // We are using AMQP pattern: amqp://{username}:{guest}@{hostname}:{port}
-    Uri = new Uri("amqp://guest:guest@localhost:5672")
+    Uri = new Uri(Shared.Constants.Uri)
 };
 
 using var connection = factory.CreateConnection();

@@ -129,10 +129,10 @@ Check out the code examples and the messages being processed 👇
 # Code examples
 
 - [📄 Single producer and consumer](./1.SingleProducerAndConsumer/README.md)
+- [📄 Single producer with multiple consumers](./2.SingleProducerMultipleConsumers/README.md)
 
 ## TODO checklist
 
-- [ ] Single producer with multiple consumers
 - [ ] Direct exchange
 - [ ] Topic exchange
 - [ ] Headers exchange

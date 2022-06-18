@@ -177,3 +177,7 @@ Example of a message:
 Take a look at RabbitMQ interface (http://localhost:15672) to see the message being produced to the queue and then consumed:
 
 ![Message produced and consumed](../.github/images/produced-message-consumed-message.png)
+
+And that's it. This is the simplest and easiest example 🐥
+
+Take a look at the other examples that we have created.

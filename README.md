@@ -53,6 +53,50 @@ AMQP 0-9-1 is a binary messaging protocol specification. This is the core protoc
 - **AMQP 1.0** - it is a newer version than the AMQP 0-9-1 but it is completely different, much more complex and, according to the documentation, it is not supported by most of the clients
 - **HTTP and WebSocket**
 
+## Exchanges
+
+### What is an exchange? 🤔
+
+They are exchanges for messages. Just like stock exchanges where people exchanges stocks, a seller sells stock to a buyer. The exchange acts as a router of the stocks.
+
+Similarly, exchanges in RabbitMQ routes messages from a producer to a single or a group of consumers.
+
+An exchange uses header attributes, routing keys and binding to route messages.
+
+> ### ⚠️ Important note
+>
+> In RabbitMQ, messages are never published to a queue, they always goes through an exchange. If we don't specify an exchange, RabbitMQ uses the default exchange behind the hood (AMQP default).
+>
+> In the examples 1 and 2 we are passing `string.Empty` in the first parameter (exchange) of the `BasicPublish` method? 👇
+>
+> ```csharp
+> channel.BasicPublish(string.Empty, "demo-queue", null, body);
+> ```
+>
+> What this does is to use the default exchange.
+
+### Types of exchanges
+
+#### Direct
+
+Direct exchange uses routing keys in the header to identify which queue the message should be sent to.
+
+Routing key is a header value set by the producer. The consumer uses the routing key to bind to the queue. The exchange does exact match of routing key values.
+
+#### Topic
+
+Topic exchange also uses routing key but it does not do an exact match on the routing key. Instead it does a pattern match based on the pattern.
+
+#### Headers
+
+Header exchange routes the message based on header values and are very similar to Topic exchange.
+
+#### Fanout
+
+As the name suggests, fanout exchange routes messages to all the queues bound to it.
+
+> We have examples for all of this types of exchanges (find them below)
+
 # Setup
 
 ## How to install RabbitMQ
@@ -130,10 +174,10 @@ Check out the code examples and the messages being processed 👇
 
 - [📄 Single producer and consumer](./1.SingleProducerAndConsumer/README.md)
 - [📄 Single producer with multiple consumers](./2.SingleProducerMultipleConsumers/README.md)
+- [📄 Direct exchange](./3.DirectExchange/README.md)
 
 ## TODO checklist
 
-- [ ] Direct exchange
 - [ ] Topic exchange
 - [ ] Headers exchange
 - [ ] FanOut exchange 

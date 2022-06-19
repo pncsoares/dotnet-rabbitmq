@@ -187,7 +187,7 @@ Example of messages being delivered into multiple consumers:
 ## Consumer 1
 
 ```
-Consumer stared
+Consumer started
 {"Name":"Producer","Message":"#0 Hello World!"}
 {"Name":"Producer","Message":"#2 Hello World!"}
 {"Name":"Producer","Message":"#4 Hello World!"}
@@ -204,7 +204,7 @@ Consumer stared
 ## Consumer 2
 
 ```
-Consumer stared
+Consumer started
 {"Name":"Producer","Message":"#1 Hello World!"}
 {"Name":"Producer","Message":"#3 Hello World!"}
 {"Name":"Producer","Message":"#5 Hello World!"}

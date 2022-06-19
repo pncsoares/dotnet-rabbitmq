@@ -97,6 +97,22 @@ As the name suggests, fanout exchange routes messages to all the queues bound to
 
 > We have examples for all of this types of exchanges (find them below)
 
+> ### ⚠️ Important note
+>
+> Now, two concepts that are extremely important when it comes to a queue 👇
+
+## Lifetime of a message
+
+The lifetime of a message is determined by the time to live (TTL).
+
+If the TTL is set to 20000 milliseconds, then the lifetime of the message will be 20 seconds.
+
+## Prefetch count
+
+Basically if you have multiple consumers connected to a queue, then, prefetch count tells how many messages that particular consumer can prefetch and process.
+
+Example of a prefetch count of 2 in a queue with 10 messages: each consumer gets 2 messages, in other words, two messages will be delivered per consumer.
+
 # Setup
 
 ## How to install RabbitMQ

@@ -8,9 +8,9 @@ public static class DirectExchangeConsumer
 {
     public static void Consume(IModel channel)
     {
-        channel.ExchangeDeclare(Shared.Constants.DirectExchangeName, ExchangeType.Direct);
-        channel.QueueDeclare(Shared.Constants.DirectQueueName, true, false, false, null);
-        channel.QueueBind(Shared.Constants.DirectQueueName, Shared.Constants.DirectExchangeName, Shared.Constants.DirectRoutingKey);
+        channel.ExchangeDeclare(Shared.Constants.DirectExchange.ExchangeName, ExchangeType.Direct);
+        channel.QueueDeclare(Shared.Constants.DirectExchange.QueueName, true, false, false, null);
+        channel.QueueBind(Shared.Constants.DirectExchange.QueueName, Shared.Constants.DirectExchange.ExchangeName, Shared.Constants.DirectExchange.RoutingKey);
         channel.BasicQos(0, 10, false);
 
         var consumer = new EventingBasicConsumer(channel);
@@ -22,7 +22,7 @@ public static class DirectExchangeConsumer
             Console.WriteLine(message);
         };
 
-        channel.BasicConsume(Shared.Constants.DirectQueueName, true, consumer);
+        channel.BasicConsume(Shared.Constants.DirectExchange.QueueName, true, consumer);
 
         Console.WriteLine("Consumer started");
 

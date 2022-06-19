@@ -13,7 +13,7 @@ public static class DirectExchangePublisher
             { "x-message-ttl", 30000 }
         };
         
-        channel.ExchangeDeclare(Shared.Constants.DirectExchangeName, ExchangeType.Direct, arguments: ttl);
+        channel.ExchangeDeclare(Shared.Constants.DirectExchange.ExchangeName, ExchangeType.Direct, arguments: ttl);
 
         var count = 0;
 
@@ -27,7 +27,7 @@ public static class DirectExchangePublisher
 
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
-            channel.BasicPublish(Shared.Constants.DirectExchangeName, Shared.Constants.DirectRoutingKey, null, body);
+            channel.BasicPublish(Shared.Constants.DirectExchange.ExchangeName, Shared.Constants.DirectExchange.RoutingKey, null, body);
 
             count++;
 

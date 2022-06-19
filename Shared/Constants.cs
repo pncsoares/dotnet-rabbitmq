@@ -1,4 +1,4 @@
-﻿namespace Shared;
+namespace Shared;
 
 public static class Constants
 {
@@ -8,10 +8,13 @@ public static class Constants
     public const string Uri = "amqp://guest:guest@localhost:5672";
     
     public const string QueueName = "demo-queue";
-    
-    public const string DirectExchangeName = "demo-direct-exchange";
 
-    public const string DirectQueueName = "demo-direct-queue";
+    public static class DirectExchange
+    {
+        public const string ExchangeName = "demo-direct-exchange";
 
-    public const string DirectRoutingKey = "account.init";
+        public const string QueueName = "demo-direct-queue";
+
+        public const string RoutingKey = "account.init";    
+    }
 }

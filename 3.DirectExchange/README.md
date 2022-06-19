@@ -1,5 +1,11 @@
 # Direct exchange
 
+Direct exchange uses routing keys in the header to identify which queue the message should be sent to.
+
+Routing key is a header value set by the producer. The consumer uses the routing key to bind to the queue. The exchange does exact match of routing key values.
+
+# Overview of the code
+
 ## Producer
 
 We will start to create a static class named `DirectExchangePublisher.cs` and move the code from the class `QueueProducer.cs` into this new class.

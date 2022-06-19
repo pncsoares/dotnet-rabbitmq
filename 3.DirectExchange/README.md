@@ -184,6 +184,62 @@ And the queue:
 
 This is how the direct exchange works 😊
 
+## Lifetime of a message
+
+Now, lets configure the lifetime of the messages so we can see it in action. We need to declare a argument attribute in the exchange but before we declare the TTL.
+
+This argument attribute is set on the producer.
+
+> If you don't know what the TTL is, read the following [section](https://github.com/pncsoares/dotnet-rabbitmq#lifetime-of-a-message).
+
+```csharp
+var ttl = new Dictionary<string, object>
+{
+    { "x-message-ttl", 30000 }
+};
+
+channel.ExchangeDeclare("demo-direct-exchange", ExchangeType.Direct, arguments: ttl);
+```
+
+## Prefetch count
+
+To configure the prefetch count, we need to use a method named `BasicQos` in the channel property.
+
+`BasicQos` method parameters:
+- prefetchSize = This field specifies the prefetch window size in octets. The server will send a message in advance if it is equal to or smaller in size than the available prefetch size (and also falls into other prefetch limits). May be set to zero, meaning "no specific limit", although other prefetch limits may still apply.
+- prefetchCount = the number of messages that we want to fetch
+- global
+  - `true` = shared across all consumers on the channel
+  - `false` = shared across all consumers on the connection
+
+This method must be added on the consumer.
+
+> If you don't know what the prefetch count is, read the following [section](https://github.com/pncsoares/dotnet-rabbitmq#prefetch-count).
+
+```csharp
+channel.BasicQos(0, 10, false);
+```
+
+This will make this consumer to fetch 10 messages at a time.
+
+> For this to take effect we need to delete the queue and the exchange:
+>
+> ![Delete Direct Queue](../.github/images/delete-direct-queue.gif)
+>
+> ![Delete Direct Exchange](../.github/images/delete-direct-exchange.gif)
+>
+> And now you must start the producer first. The result must be the following:
+>
+> ### TTL
+>
+> ![Direct Exchange TTL](../.github/images/direct-exchange-ttl.png)
+>
+> ![Direct Exchange TTL Details](../.github/images/direct-exchange-ttl-details.png)
+>
+> ### Prefetch count
+>
+> ![Direct Exchange Prefetch Count](../.github/images/direct-exchange-prefetch-count.png)
+
 # Test it yourself
 
 You can now run the Consumer console application and then run the Producer console application and see the message displayed in the Consumer's console.

@@ -8,7 +8,12 @@ public static class DirectExchangePublisher
 {
     public static void Publish(IModel channel)
     {
-        channel.ExchangeDeclare(Shared.Constants.DirectExchangeName, ExchangeType.Direct);
+        var ttl = new Dictionary<string, object>
+        {
+            { "x-message-ttl", 30000 }
+        };
+        
+        channel.ExchangeDeclare(Shared.Constants.DirectExchangeName, ExchangeType.Direct, arguments: ttl);
 
         var count = 0;
 

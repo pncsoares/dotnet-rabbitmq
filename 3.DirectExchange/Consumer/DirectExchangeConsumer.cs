@@ -11,6 +11,7 @@ public static class DirectExchangeConsumer
         channel.ExchangeDeclare(Shared.Constants.DirectExchangeName, ExchangeType.Direct);
         channel.QueueDeclare(Shared.Constants.DirectQueueName, true, false, false, null);
         channel.QueueBind(Shared.Constants.DirectQueueName, Shared.Constants.DirectExchangeName, Shared.Constants.DirectRoutingKey);
+        channel.BasicQos(0, 10, false);
 
         var consumer = new EventingBasicConsumer(channel);
         consumer.Received += (sender, e) =>
